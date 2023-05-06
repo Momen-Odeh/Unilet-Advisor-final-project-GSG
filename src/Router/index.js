@@ -1,19 +1,27 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Layout from '../Layout'
+import HomePage from '../Pages/HomePage'
+import LoginPage from '../Pages/LoginPage'
+import NewPostPage from '../Pages/NewPostPage'
+import NotFoundPage from '../Pages/NotFoundPage'
+import ReviewDetailsPage from '../Pages/ReviewDetailsPage'
+import ReviewSearchPage from '../Pages/ReviewSearchPage'
+import ReviewSearchResultPage from '../Pages/ReviewSearchResultPage'
+import SignUpPage from '../Pages/SignUpPage'
 const Router = () => {
   return (
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<Layout/>}>
-              <Route index element={<h1>Home Page</h1>}/>
-              <Route path='/ReviewSearch' element={<h1>ReviewSearch Page</h1>}/>
-              <Route path='/ReviewSearchResult' element={<h1>ReviewSearchResult Page</h1>}/>
-              <Route path='/ReviewDetails' element={<h1>ReviewDetails Page</h1>}/>
-              <Route path='/NewPost' element={<h1>NewPost Page</h1>}/>
-              <Route path='/Login' element={<h1>Login Page</h1>}/>
-              <Route path='/signUp' element={<h1>signUp Page</h1>}/>
-              <Route path='*' element={<h1>404 Not Found</h1>}/>  
+              <Route index element={<HomePage/>}/>
+              <Route path='/ReviewSearch' element={<ReviewSearchPage/>}/>
+              <Route path='/ReviewSearchResult' element={<ReviewSearchResultPage/>}/>
+              <Route path='/ReviewDetails' element={<ReviewDetailsPage/>}/>
+              <Route path='/NewPost' element={<NewPostPage/>}/>
+              <Route path='/Login' element={<LoginPage/>}/>
+              <Route path='/signUp' element={<SignUpPage/>}/>
+              <Route path='*' element={<NotFoundPage/>}/>  
             </Route>
             
         </Routes>
