@@ -2,39 +2,40 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import LOGO from './images/LOGO.png'
+import PrimaryTitle from '../PrimaryTitle';
 import SecondaryText from '../SecondaryText';
 import { createUseStyles } from 'react-jss';
+
 const useStyles  = createUseStyles({
     Col:{
+        display:"flex",
+        flexDirection:"column",
+        gap:"15px",
         marginTop:"20px",
-        paddingLeft:"20px"
     },
-    ColAlign:{
-        
-        '@media (max-width: 992px)': {
-            display:"flex",
-            alignItems:"center",
-            flexDirection:"column",
-        },
-    }
+    
 })
-const FooterLogo = () => {
+const FooterSection = ({title, list}) => {
     const classes = useStyles ();
   return (
-    <Container fluid className={classes.ColAlign}>
+    <Container>
         <Row>
             <Col>
-                <img src={LOGO} alt='logo'/>
+                <PrimaryTitle text={title} sizeText={24} lineHeight={28.2}/>
             </Col>
         </Row>
         <Row>
             <Col className={classes.Col}>
-                <SecondaryText text={"We're shutting the door on second-rate student housing"} sizeText={17} lineHeight={23.15}/>
+            {
+                
+                list.map(((item,index)=>
+                <SecondaryText text={item.text} key={index} sizeText={17} lineHeight={23.15} icon={item.icon}/>
+                ))
+            }
             </Col>
         </Row>
     </Container>
   )
 }
 
-export default FooterLogo
+export default FooterSection
