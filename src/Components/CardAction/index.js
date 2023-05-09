@@ -8,7 +8,7 @@ import DarkTitle from '../DarkTitle';
 import RateContainer from '../RateContainer';
 const useStyles  = createUseStyles({
     Card:{
-        width:"20rem",
+        width:"19rem",
     }
     
   })

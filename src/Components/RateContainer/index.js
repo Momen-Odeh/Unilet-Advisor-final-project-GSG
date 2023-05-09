@@ -34,8 +34,8 @@ const RateContainer = ({value,numRated,clickOperation}) => {
       <Row>
         <Col xs={10}>
           <Row>
-            <Col xs={2} className={`${classes.Col} ${classes.value}`}>{value}</Col>
-            <Col xs={5} className={classes.Col}><PrettyRating  value={value} colors={["#0FB3AF","#0FB3AF","#E5E5E5"]} disabled={true} /></Col>
+            <Col xs={3} className={`${classes.Col} ${classes.value}`}>{value}</Col>
+            <Col xs={7} className={classes.Col}><PrettyRating  value={value} colors={["#0FB3AF","#0FB3AF","#E5E5E5"]} disabled={true} /></Col>
           </Row>
           <Row>
             <Col xs={6} className={`${classes.Col} ${classes.Num}`}>{numRated} Ratings</Col>
