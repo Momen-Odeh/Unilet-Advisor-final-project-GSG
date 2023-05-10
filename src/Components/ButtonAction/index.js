@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { createUseStyles } from 'react-jss';
 import arrowImg from './images/arrow.png'
 
-//font-family: 'Open Sans', sans-serif;
+
 const useStyles  = createUseStyles({
   Button: {
     backgroundColor:({dark})=>{
@@ -22,7 +22,6 @@ const useStyles  = createUseStyles({
     border:'none',
     '&:hover': {
       backgroundColor: ({dark})=>{
-        console.log(dark);
         if(dark) return "#272726"
         else return "#0a7574"
       }
