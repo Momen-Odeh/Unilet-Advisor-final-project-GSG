@@ -7,8 +7,6 @@ import EmailIcon from './images/emailIcon.png'
 import passwordIcon from './images/pass.png'
 const useStyles  = createUseStyles({
     Form:{
-        width:"90%",
-        margin:"0 auto",
     },
     InputGroup:{
         border:"1px solid #D9D9D9",
