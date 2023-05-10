@@ -1,12 +1,12 @@
 import React from 'react'
 import ButtonAction from '../../Components/ButtonAction'
-import InputField from '../../Components/InputField'
+import SearchInput from '../../Components/SearchInput'
+import SortResult from '../../Components/SortResult'
+
 
 const HomePage = () => {
   return (
     <>
-      {/* <div>HomePage</div>
-      <ButtonAction text="Log In" arrow dark bold/> */}
       <InputField type={"user"}/>
       <InputField type={"email"}/>
       <InputField type={"password"}/>
