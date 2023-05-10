@@ -8,6 +8,7 @@ const useStyles  = createUseStyles({
         fontSize:({size})=>size?size+"px":"19px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"23.5px",
         letterSpacing:({sizeText})=>sizeText?sizeText+"px":"",
+        textAlign:"center"
 
     },
     img:{
