@@ -30,13 +30,16 @@ const useStyles  = createUseStyles({
         flexDirection:"column",
         justifyContent:"center",
         gap:"5px"
+    },
+    Row:{
+        width:"100%"
     }
 })
   
 const Comment = ({image,auther,comment}) => {
     const classes = useStyles();
   return (
-    <Row>
+    <Row className={classes.Row}>
         <Col xs={"auto"}>
             <img className={classes.img} draggable={false} src={image} alt='img'/>
         </Col>
