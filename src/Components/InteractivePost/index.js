@@ -11,6 +11,7 @@ import arya from "./images/arya.jpg"
 import { createUseStyles } from 'react-jss';
 import InteractiveIcon from './InteractiveIcon';
 import Comment from './Comment';
+import NewComment from './NewComment';
 const useStyles  = createUseStyles({
     Row:{
         // justifyContent:"flex-start",
@@ -44,7 +45,7 @@ const InteractivePost = () => {
         <Comment key={index} {...item}/>
     )
     }
-        
+    <NewComment/>
     </>
   )
 }
