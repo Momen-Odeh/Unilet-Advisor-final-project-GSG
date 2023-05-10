@@ -71,7 +71,7 @@ const InputField = ({type}) => {
     <Form className={classes.Form}>
         <Form.Group>
             <InputGroup className={classes.InputGroup}>
-                <InputGroup.Text className={classes.Text}><img src={data.icon} alt="icon" className={classes.icon}/></InputGroup.Text>
+                <InputGroup.Text className={classes.Text}><img src={data.icon} draggable={false} alt="icon" className={classes.icon}/></InputGroup.Text>
                 <Form.Control className={classes.Control} type={data.type} placeholder={data.placeholder} />
             </InputGroup>
         </Form.Group>
