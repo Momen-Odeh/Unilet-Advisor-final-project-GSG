@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import { createUseStyles } from 'react-jss';
 import arrowImg from './images/arrow.png'
 
-
 const useStyles  = createUseStyles({
   Button: {
     backgroundColor:({dark})=>{
