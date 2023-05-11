@@ -6,7 +6,6 @@ const useStyles  = createUseStyles({
         fontWeight:({weightText})=>weightText?weightText:"400",
         fontSize:({sizeText})=>sizeText?sizeText+"px":"17px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"23.15px",
-        textAlign:"center"
         
     },
     img:{
