@@ -3,6 +3,7 @@ import HeroSection from '../../Components/HeroSection'
 import ReviewReason from '../../Components/ReviewReason'
 import HowWork from '../../Components/HowWork'
 import RecentlyReviewed from '../../Components/RecentlyReviewed'
+import KeepTouch from '../../Components/KeepTouch'
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <ReviewReason/>
       <HowWork/>
       <RecentlyReviewed/>
+      <KeepTouch/>
     </>
     
   )

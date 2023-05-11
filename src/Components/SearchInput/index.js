@@ -20,17 +20,16 @@ const useStyles  = createUseStyles({
   
 })
 
-const SearchInput = () => {
+const SearchInput = ({placeHolder,btnText}) => {
     const classes = useStyles ();
   return (
     <InputGroup className={classes.InputGroup}>
 
         <Form.Control
-          placeholder="Start typing the address of the property"
+          placeholder={placeHolder}
           className={classes.Form}
-        //   onChange={(e)=>console.log(e.target.value)}
         />
-        <ButtonAction text="Search" dark bold/>
+        <ButtonAction text={btnText} dark bold/>
 
     </InputGroup>
   )
