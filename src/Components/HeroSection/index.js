@@ -32,12 +32,12 @@ const HeroSection = () => {
     <Container className={classes.Hero} fluid>
         <Row>
             <Col>
-                <DarkTitle text="Share Your Student Renting Experience" size={50} weight={700} lineHeight={58.75} space={1}/>   
+                <DarkTitle text="Share Your Student Renting Experience" size={50} weight={700} lineHeight={58.75} space={1} center/>   
             </Col>
         </Row>
         <Row>
             <Col>
-                <SecondaryText text="Help other students make the right rental choice" sizeText={24} lineHeight={32.68} weightText={600}/>
+                <SecondaryText text="Help other students make the right rental choice" sizeText={24} lineHeight={32.68} weightText={600} center/>
             </Col>
         </Row>
         <Row>

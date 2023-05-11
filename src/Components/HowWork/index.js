@@ -15,7 +15,8 @@ import { FaRegShareSquare } from 'react-icons/fa';
 import ButtonAction from '../ButtonAction';
 const useStyles  = createUseStyles({
     BTN:{
-        marginTop:"30px"
+        marginTop:"30px",
+        marginBottom:"150px"
     }
 });
 const HowWork = () => {
