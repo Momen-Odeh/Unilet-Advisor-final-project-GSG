@@ -9,6 +9,7 @@ const useStyles  = createUseStyles({
         fontSize:({sizeText})=>sizeText?sizeText+"px":"24px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"28.2px",
         letterSpacing:({space})=>space?"2px":"",
+        wordWrap: 'break-word'
     }
 })
 
