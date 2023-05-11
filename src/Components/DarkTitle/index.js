@@ -8,14 +8,15 @@ const useStyles  = createUseStyles({
         fontSize:({size})=>size?size+"px":"19px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"23.5px",
         letterSpacing:({sizeText})=>sizeText?sizeText+"px":"",
+        textAlign:({center})=>center?"center":""
 
     },
     img:{
         marginRight:"15px",
     }
 })
-const DarkTitle = ({text,size,weight,lineHeight,space}) => {
-    const classes = useStyles ({size,weight,lineHeight,space});
+const DarkTitle = ({text,size,weight,lineHeight,space,center}) => {
+    const classes = useStyles ({size,weight,lineHeight,space,center});
   return (
     <div className={classes.text}>{text}</div>
   )
