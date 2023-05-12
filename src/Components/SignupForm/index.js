@@ -10,18 +10,11 @@ import InputField from '../InputField';
 import ButtonAction from '../ButtonAction';
 import HR from '../HR';
 const useStyle =createUseStyles({
-  check:{
-      color:"#3C3C3B",
-      fontFamily:"'Open Sans', sans-serif",
-      fontWeight:"600",
-      fontSize:"14px",
-      lineHeight:"19.07px"
-  },
   Container:{
     marginTop:"100px",
     marginBottom:"100px"
   },
-  signUP:{
+  login:{
     fontFamily:"'Open Sans', sans-serif",
     color:"#0FB3AF",
     fontWeight:"600",
@@ -73,7 +66,7 @@ const SignupForm = () => {
         <Col className='text-center' lg={6} md={10} xs={12}>
             <span>
               <SecondaryText text="Already have an account?" weightText={600} sizeText={14} lineHeight={19.07}/>
-              <span className={classes.signUP}> Log In</span>
+              <span className={classes.login}> Log In</span>
             </span>
         </Col>
       </Row>
