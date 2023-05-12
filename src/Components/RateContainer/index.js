@@ -45,8 +45,7 @@ const RateContainer = ({value,numRated,clickOperation}) => {
           <img src={go} alt="go" onClick={clickOperation}/>
         </Col>
       </Row>
-      
-      </Container>
+    </Container>
   )
 }
 
