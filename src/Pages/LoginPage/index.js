@@ -15,7 +15,7 @@ const LoginPage = () => {
   const classes = useStyle();
   return (
     <>
-    <GeneralHero BG={BG} title={"Nice to See You Again"} subTitle={"Welcome back"}/>
+    <GeneralHero BG={BG} title={"Nice to See You Again"} subTitle={"Welcome back"} />
     <LoginForm/>
     </>
   )

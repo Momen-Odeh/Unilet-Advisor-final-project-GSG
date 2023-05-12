@@ -27,8 +27,8 @@ const GeneralHero = ({BG,title,subTitle}) => {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <SecondaryText text={subTitle} weightText={600} sizeText={24} lineHeight={32.68} center />
+        <Col className='text-center'>
+          <SecondaryText text={subTitle} weightText={600} sizeText={24} lineHeight={32.68} center/>
         </Col>
       </Row>
     </Container>
