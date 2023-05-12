@@ -6,7 +6,8 @@ const useStyles  = createUseStyles({
         fontWeight:({weightText})=>weightText?weightText:"400",
         fontSize:({sizeText})=>sizeText?sizeText+"px":"17px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"23.15px",
-        textAlign:({center})=>center?"center":""
+        textAlign:({center})=>center?"center":"",
+        wordBreak:"break-word"
         
     },
     img:{
@@ -18,10 +19,10 @@ const SecondaryText = ({text,sizeText,lineHeight,icon,weightText,center}) => {
 
   const classes = useStyles ({sizeText,lineHeight,weightText,center});
   return (
-    <span className={classes.text}>
+    <div className={classes.text}>
         {icon&&<img className={classes.img} src={icon} alt='logo'/>}
         {text}
-    </span>
+    </div>
   )
 }
 
