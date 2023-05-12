@@ -17,10 +17,10 @@ const SecondaryText = ({text,sizeText,lineHeight,icon}) => {
 
   const classes = useStyles ({sizeText,lineHeight});
   return (
-    <div className={classes.text}>
+    <span className={classes.text}>
         {icon&&<img className={classes.img} src={icon} alt='logo'/>}
         {text}
-    </div>
+    </span>
   )
 }
 
