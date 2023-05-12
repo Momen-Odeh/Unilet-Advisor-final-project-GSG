@@ -8,7 +8,7 @@ import DarkTitle from '../DarkTitle';
 import RateContainer from '../RateContainer';
 const useStyles  = createUseStyles({
     Card:{
-        width:"19rem",
+        width:"100%",
     }
     
   })
@@ -18,7 +18,9 @@ const CardAction = ({title,img,value,numRated,clickOperation}) => {
     <Card className={classes.Card}>
       <Card.Img variant="top" src={home} />
       <Card.Body>
-        <Card.Title> <DarkTitle text={title}/></Card.Title>
+        <Card.Title>
+          <DarkTitle text={title}/>
+        </Card.Title>
         <Card.Text>
         <RateContainer value={value} numRated={numRated} clickOperation={clickOperation}/>
         </Card.Text>
