@@ -1,8 +1,10 @@
 import React from 'react'
-
+import SearchHero from '../../Components/SearchHero';
 const ReviewSearchPage = () => {
   return (
-    <div>ReviewSearchPage</div>
+    <>
+    <SearchHero/>
+    </>
   )
 }
 
