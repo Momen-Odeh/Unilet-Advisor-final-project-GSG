@@ -48,7 +48,7 @@ const NewComment = () => {
             </span>
         </Col>
     </Row>
-    <Row className={`${classes.postCommint} ${classes.Row}`}>
+    <Row className={`${classes.postCommint} ${classes.Row} mb-5`}>
         <Col>
             <ButtonAction text="Post Comment" bold/>
         </Col>
