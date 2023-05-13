@@ -7,6 +7,11 @@ import ButtonAction from '../ButtonAction';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+// 
+import FirebaseApp from '../../Firebase'
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
+import {collection,addDoc,serverTimestamp,onSnapshot,doc,deleteDoc} from 'firebase/firestore'
+// 
 const useStyles  = createUseStyles({
     Hero:{
         backgroundImage:`url(${BG})`,
@@ -25,7 +30,32 @@ const useStyles  = createUseStyles({
 })
 
 
+async function Auth(){
+    console.log(FirebaseApp.FirebaseApp);
+    const auth = getAuth(FirebaseApp.FirebaseApp)
+    // 
+    // const credintials = await createUserWithEmailAndPassword(auth,"momen.odeh74@gmail.com","123456")    
+    // 
+    const credintials = await signInWithEmailAndPassword(auth,"momen.odeh74@gmail.com","123456")
+    console.log('credintials', credintials)
+}
 
+async function Store(){
+    // const colRef = collection(FirebaseApp.db,'cards')
+    // onSnapshot(colRef,(snapShot)=>{ //track change on data base
+    //     console.log(snapShot);
+    //     snapShot.docs.forEach(doc=>{
+    //         console.log("doc",doc.data(),doc.id);
+    //     })
+    // })
+    // await addDoc(colRef,{
+    //     title:"Momen Odeh",
+    //     publish:serverTimestamp(),
+    // })
+
+    // Delete and update
+    // const docRef = doc(FirebaseApp.db,'cards',id)
+}
 const HeroSection = () => {
     const classes = useStyles ();
   return (
@@ -42,7 +72,7 @@ const HeroSection = () => {
         </Row>
         <Row>
             <Col>
-                <ButtonAction text="Search Now" dark bold/>    
+                <ButtonAction text="Search Now" dark bold onClick={Store}/>    
             </Col>
         </Row>
         
