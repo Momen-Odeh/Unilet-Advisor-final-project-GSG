@@ -9,13 +9,14 @@ const useStyles  = createUseStyles({
         fontSize:({sizeText})=>sizeText?sizeText+"px":"24px",
         lineHeight:({lineHeight})=>lineHeight?lineHeight+"px":"28.2px",
         letterSpacing:({space})=>space?"2px":"",
-        wordWrap: 'break-word'
+        wordWrap: 'break-word',
+        textAlign:({center})=>center?"center":""
     }
 })
 
-const PrimaryTitle = ({text,sizeText,lineHeight,space}) => {
+const PrimaryTitle = ({text,sizeText,lineHeight,space,center}) => {
 
-  const classes = useStyles ({sizeText,lineHeight,space});
+  const classes = useStyles ({sizeText,lineHeight,space,center});
   return (
     <div className={classes.text}>{text}</div>
   )
