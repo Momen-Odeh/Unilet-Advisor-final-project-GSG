@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,6 +9,8 @@ import Form from 'react-bootstrap/Form';
 import InputField from '../InputField';
 import ButtonAction from '../ButtonAction';
 import HR from '../HR';
+import LogInFirebase from '../../Firebase/LogInFirebase';
+import Alert from 'react-bootstrap/Alert';
 const useStyle =createUseStyles({
   check:{
       color:"#3C3C3B",
@@ -31,6 +33,29 @@ const useStyle =createUseStyles({
 })
 const LoginForm = () => {
   const classes = useStyle();
+  const [logInInfo,setlogInInfo] = useState({})
+  const [err, setErr] = useState();
+
+  function handleLogInInfo(e)
+  {
+    setlogInInfo(
+      {
+        ...logInInfo,
+        [e.target.name]:e.target.value
+      }
+    )
+  }
+  async function handleLogIn(){
+    
+    try {
+      let token = await LogInFirebase(logInInfo.email,logInInfo.password);
+      console.log(token.user.accessToken);
+      setErr()
+    } catch (error) {
+      setErr(error.message)
+    }
+    
+  }
   return (
     <>
     <Container className={classes.Container}>
@@ -41,12 +66,12 @@ const LoginForm = () => {
       </Row>
       <Row className='justify-content-center mb-4'>
         <Col lg={6} md={10} xs={12}>
-            <InputField type="email"/>
+            <InputField type="email" onChange={handleLogInInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4' >
         <Col lg={6} md={10} xs={12}>
-            <InputField type="password"/>
+            <InputField type="password" onChange={handleLogInInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4'>
@@ -63,7 +88,7 @@ const LoginForm = () => {
       </Row>
       <Row className='mb-1' >
         <Col className='text-center'>
-            <ButtonAction text="Log In" bold/>
+            <ButtonAction text="Log In" bold onClick={handleLogIn}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-1' >
@@ -79,6 +104,15 @@ const LoginForm = () => {
             </span>
         </Col>
       </Row>
+      {err&&
+      <Row className='justify-content-center mb-1' >
+        <Col className='text-center' lg={6} md={10} xs={12}>
+        <Alert  variant={"danger"}>
+          <SecondaryText text={err}/>
+        </Alert>
+        </Col>
+      </Row>
+      }
     </Container>
     </>
   )
