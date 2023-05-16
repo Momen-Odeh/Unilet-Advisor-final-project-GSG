@@ -5,6 +5,8 @@ import PrimaryTitle from '../PrimaryTitle';
 import SecondaryText from '../SecondaryText';
 import ButtonAction from '../ButtonAction';
 import { createUseStyles } from 'react-jss';
+
+
 const useStyles  = createUseStyles({
     img:{
         width:"100%"
@@ -30,30 +32,18 @@ const useStyles  = createUseStyles({
     },
     text:{
         marginTop:"30px"
+    },
+    LTR:{
+        order:-3
     }
 });
 const WorkDescription = ({image,Icon,title,description,ltr}) => {
     const classes = useStyles ();
+    
   return (
     <Row className={classes.Row}>
-        {
-            !ltr&&
-            <>
-            <Col md={6} xs={12} className='text-center'>
-                <img src={image} alt='img' className={classes.img}/>
-                
-            </Col>
-            </>
-            
-        }
-        
         <Col md={{span:6, order:0}} xs={{span:12, order:1}}  className={ltr?`${classes.Col} ${classes.text}`:`${classes.text}`}>
             <Row>
-                {!ltr&&
-                <Col xs={"auto"}>
-                    <Icon className={classes.Icon}/>
-                </Col>
-                }
                 <Col>
                     <PrimaryTitle text={title}/>
                     <br/>
@@ -61,20 +51,17 @@ const WorkDescription = ({image,Icon,title,description,ltr}) => {
                     <br/>
                     <ButtonAction text="Know More " arrow bold/>
                 </Col>
-                {ltr&&
-                <Col xs={"auto"}>
+                <Col xs={"auto"}  className={!ltr ?classes.LTR:"" }>
                     <Icon className={classes.Icon}/>
                 </Col>
-                }
                 
             </Row>
             
         </Col>
-        {
-            ltr&&<Col md={6} xs={12} className='text-center'>
+
+        <Col md={6} xs={12} className={`text-center ${!ltr ?classes.LTR:"" }`}>
                 <img src={image} alt='img' className={classes.img}/>
-            </Col>
-        }
+        </Col>
     </Row>
   )
 }

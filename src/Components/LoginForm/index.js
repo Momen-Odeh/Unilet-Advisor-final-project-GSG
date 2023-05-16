@@ -11,6 +11,7 @@ import ButtonAction from '../ButtonAction';
 import HR from '../HR';
 import LogInFirebase from '../../Firebase/LogInFirebase';
 import Alert from 'react-bootstrap/Alert';
+import { useNavigate,Link  } from 'react-router-dom';
 const useStyle =createUseStyles({
   check:{
       color:"#3C3C3B",
@@ -28,14 +29,17 @@ const useStyle =createUseStyles({
     color:"#0FB3AF",
     fontWeight:"600",
     fontSize:"14px",
-    lineHeight:"19.07px"
+    lineHeight:"19.07px",
+    "&:hover":{
+      textDecoration: "none",
+    }
   }
 })
 const LoginForm = () => {
   const classes = useStyle();
   const [logInInfo,setlogInInfo] = useState({})
   const [err, setErr] = useState();
-
+  const navigate = useNavigate();
   function handleLogInInfo(e)
   {
     setlogInInfo(
@@ -49,7 +53,8 @@ const LoginForm = () => {
     
     try {
       let token = await LogInFirebase(logInInfo.email,logInInfo.password);
-      console.log(token.user.accessToken);
+      // console.log(token.user.accessToken);
+      navigate('/');
       setErr()
     } catch (error) {
       setErr(error.message)
@@ -100,7 +105,7 @@ const LoginForm = () => {
         <Col className='text-center' lg={6} md={10} xs={12}>
             <span>
               <SecondaryText text="Don’t have an account?" weightText={600} sizeText={14} lineHeight={19.07}  />
-              <span className={classes.signUP}> SIGN UP</span>
+              <Link to={"/signUp"} className={classes.signUP}> SIGN UP</Link>
             </span>
         </Col>
       </Row>

@@ -13,6 +13,8 @@ import { GoLocation } from 'react-icons/go';
 import { TbHandClick } from 'react-icons/tb';
 import { FaRegShareSquare } from 'react-icons/fa';
 import ButtonAction from '../ButtonAction';
+import { useNavigate } from 'react-router-dom';
+
 const useStyles  = createUseStyles({
     BTN:{
         marginTop:"30px",
@@ -21,6 +23,7 @@ const useStyles  = createUseStyles({
 });
 const HowWork = () => {
     const classes = useStyles ();
+    const navigate = useNavigate();
   return (
     <Container>
         <Row className='mb-3'>
@@ -33,9 +36,9 @@ const HowWork = () => {
                 <SecondaryText text="Lorem Ipsum is simply dummy text of the printing and typesetting"/>
             </Col>
         </Row>
-        <WorkDescription
-        Icon={GoLocation} 
-        image={img1} 
+            <WorkDescription
+            Icon={GoLocation} 
+            image={img1} 
             title="Search for the address" 
             description="Lorem Ipsum is simply dummy text of the printing and
             typesetting industry. Lorem Ipsum has been the industry's
@@ -59,7 +62,7 @@ const HowWork = () => {
             printer took a galley of type and scrambled it to make"/>
         <Row>
             <Col className= {`text-center ${classes.BTN}`}>
-                <ButtonAction text="Get Started" bold dark/>
+                <ButtonAction text="Get Started" bold dark onClick={()=>navigate("/ReviewSearch")}/>
             </Col>
         </Row>
         
