@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import ButtonAction from '../ButtonAction';
 import { createUseStyles } from 'react-jss';
-
+import RetriveData from '../../Firebase/RetriveData';
 const useStyles  = createUseStyles({
     InputGroup:{
         border:"1px solid #3C3C3B",
@@ -29,7 +29,14 @@ const SearchInput = ({placeHolder,btnText}) => {
           placeholder={placeHolder}
           className={classes.Form}
         />
-        <ButtonAction text={btnText} dark bold/>
+        <ButtonAction text={btnText} dark bold onClick={async()=>{
+          // get data from external source
+          let responce =await RetriveData("Users")
+          responce.docs.map((item)=>console.log(item.data()))
+          
+          
+          
+        }}/>
 
     </InputGroup>
   )

@@ -62,7 +62,7 @@ const SignupForm = () => {
         email:signUpInfo.email
       })
       setErr()
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       setErr(error.message)
     }

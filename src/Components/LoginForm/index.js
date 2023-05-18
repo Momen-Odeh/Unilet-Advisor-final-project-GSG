@@ -12,6 +12,7 @@ import HR from '../HR';
 import LogInFirebase from '../../Firebase/LogInFirebase';
 import Alert from 'react-bootstrap/Alert';
 import { useNavigate,Link  } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 const useStyle =createUseStyles({
   check:{
       color:"#3C3C3B",
@@ -37,6 +38,7 @@ const useStyle =createUseStyles({
 })
 const LoginForm = () => {
   const classes = useStyle();
+  const [Cookies, setCookies] = useCookies();
   const [logInInfo,setlogInInfo] = useState({})
   const [err, setErr] = useState();
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ const LoginForm = () => {
     
     try {
       let token = await LogInFirebase(logInInfo.email,logInInfo.password);
-      // console.log(token.user.accessToken);
+      setCookies("UserToken",token.user.accessToken)
       navigate('/');
       setErr()
     } catch (error) {

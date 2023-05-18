@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import LOGO from "./images/LOGO.png";
 import { createUseStyles } from 'react-jss';
 import ButtonAction from '../ButtonAction';
 import { Link  } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 const useStyles  = createUseStyles({
     img:{
       padding:"0",
@@ -38,11 +39,34 @@ const useStyles  = createUseStyles({
     },
     
   })
+
+  
+  
 const Header = () => {
     const classes = useStyles ();
+    const [Cookies, setCookies, removeCookie] = useCookies();
+    const [btnText,setBtnText] = useState("LogIn")
+    useEffect(()=>{
+      console.log(5555);
+    },[Cookies.UserToken])
+
+
+    function handlelLogBtn(){
+      if(Cookies.UserToken)
+      {
+        console.log(1);
+        setBtnText("LogOut")
+        
+      }
+      else{
+        console.log(2);
+        
+        setBtnText( "LogIn")
+      }
+    }
   return (
     <Navbar  expand="lg" className={classes.Navbar}>
-        <Navbar.Brand href="#home" className={classes.img}> <img src={LOGO} alt='LOGO'/></Navbar.Brand>
+        <Navbar.Brand  as={Link} to={"/"} className={classes.img}> <img src={LOGO} alt='LOGO'/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className={`me-auto ${classes.Nav}`}>
@@ -55,7 +79,7 @@ const Header = () => {
             
             
           </Nav>
-          <Nav.Link className={classes.NavLink} as={Link} to={"/login"}><ButtonAction text="Login"/></Nav.Link>
+          <Nav.Link className={classes.NavLink} as={Link} to={"/login"}><ButtonAction text={btnText} onClick={handlelLogBtn}/></Nav.Link>
           
         </Navbar.Collapse>
     </Navbar>
