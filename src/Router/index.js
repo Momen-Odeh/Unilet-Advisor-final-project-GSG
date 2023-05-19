@@ -17,7 +17,7 @@ const Router = () => {
               <Route index element={<HomePage/>}/>
               <Route path='/ReviewSearch' element={<ReviewSearchPage/>}/>
               <Route path='/ReviewSearchResult' element={<ReviewSearchResultPage/>}/>
-              <Route path='/ReviewDetails' element={<ReviewDetailsPage/>}/>
+              <Route path='/ReviewDetails/:title' element={<ReviewDetailsPage/>}/>
               <Route path='/NewPost' element={<NewPostPage/>}/>
               <Route path='/Login' element={<LoginPage/>}/>
               <Route path='/signUp' element={<SignUpPage/>}/>

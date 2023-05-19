@@ -55,7 +55,9 @@ const LoginForm = () => {
     
     try {
       let token = await LogInFirebase(logInInfo.email,logInInfo.password);
+      
       setCookies("UserToken",token.user.accessToken)
+      setCookies("UserEmail",token.user.email)
       navigate('/');
       setErr()
     } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import LOGO from "./images/LOGO.png";
@@ -45,25 +45,22 @@ const useStyles  = createUseStyles({
 const Header = () => {
     const classes = useStyles ();
     const [Cookies, setCookies, removeCookie] = useCookies();
-    const [btnText,setBtnText] = useState("LogIn")
-    useEffect(()=>{
-      console.log(5555);
-    },[Cookies.UserToken])
-
-
+    const [btnText, setBtnText] = useState("LogIn");
+    useEffect(() => {
+      if (Cookies.UserToken) {
+        setBtnText("LogOut");
+      } else {
+        setBtnText("LogIn");
+      }
+    }, [Cookies]);
     function handlelLogBtn(){
       if(Cookies.UserToken)
       {
-        console.log(1);
-        setBtnText("LogOut")
-        
-      }
-      else{
-        console.log(2);
-        
-        setBtnText( "LogIn")
+        removeCookie("UserEmail")
+        removeCookie("UserToken")
       }
     }
+    
   return (
     <Navbar  expand="lg" className={classes.Navbar}>
         <Navbar.Brand  as={Link} to={"/"} className={classes.img}> <img src={LOGO} alt='LOGO'/></Navbar.Brand>

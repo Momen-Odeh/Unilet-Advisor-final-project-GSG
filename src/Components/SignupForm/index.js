@@ -56,7 +56,7 @@ const SignupForm = () => {
         throw new Error("password and confirm password not matched, try again")
       }
       let token = await SignUpFirebase(signUpInfo.email,signUpInfo.password);
-      setCookies("UserToken",token.user.accessToken)
+      // setCookies("UserToken",token.user.accessToken)
       StoreNewData("Users",{
         fullName:signUpInfo.user,
         email:signUpInfo.email

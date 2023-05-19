@@ -42,7 +42,7 @@ const ReviewSearchResultPage = () => {
         </Row>
         <Row className='mb-4'>
             <Col>
-                <Cards/>
+                <Cards places={[]}/>
             </Col>
         </Row>
         <Row className='justify-content-center'>

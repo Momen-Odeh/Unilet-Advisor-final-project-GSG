@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -20,16 +20,22 @@ const useStyles  = createUseStyles({
           },
     }
 });
-const PostImage = () => {
+const PostImage = ({imagesUrl}) => {
     const classes = useStyles ();
-    const [currentImg,SetcurrentImg] =useState(img0)
-    const [prevImg,SetcprevImg] =useState(img0)
+    const [currentImg,SetcurrentImg] =useState()
+    const [prevImg,SetcprevImg] =useState()
+    useEffect(() => {
+    if (imagesUrl) {
+        SetcurrentImg(imagesUrl[0]);
+        SetcprevImg(imagesUrl[0]);
+    }
+  }, [imagesUrl]);
   return (
     <>
         <Col lg={3} md={4} xs={12}>
             {
-            [img0,img1,img2,img4]
-            .map((item,index)=>
+            imagesUrl
+            ?.map((item,index)=>
             <Row key={index} className='mb-2'>
                 <Col>
                     <img src={item} alt="img" className={classes.img} 

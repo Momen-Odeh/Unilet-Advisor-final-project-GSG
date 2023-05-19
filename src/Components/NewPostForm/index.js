@@ -121,7 +121,11 @@ const NewPostForm = () => {
           star5:0,
         },
         Comments:[],
-        publishDate:serverTimestamp()
+        publishDate:serverTimestamp(),
+        interactions:{
+          like:0,
+          disLike:0
+        }
 
       })
       navigate("/ReviewSearch")

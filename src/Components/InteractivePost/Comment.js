@@ -1,11 +1,11 @@
 import React from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import user from './images/user.png'
 import { createUseStyles } from 'react-jss';
 const useStyles  = createUseStyles({
     img:{
-        width:"130px",
+        width:"100px",
         height:"100px",
         borderRadius:"50%",
     },
@@ -36,12 +36,12 @@ const useStyles  = createUseStyles({
     }
 })
   
-const Comment = ({image,auther,comment}) => {
+const Comment = ({auther,comment}) => {
     const classes = useStyles();
   return (
     <Row className={classes.Row}>
         <Col xs={"auto"}>
-            <img className={classes.img} draggable={false} src={image} alt='img'/>
+            <img className={classes.img} draggable={false} src={user} alt='img'/>
         </Col>
         <Col className={classes.text}>
             <Row>

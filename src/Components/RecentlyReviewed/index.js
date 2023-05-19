@@ -24,7 +24,7 @@ const RecentlyReviewed = () => {
         </Row>
         <Row className='mb-4'>
             <Col>
-                <Cards/>
+                <Cards places={[]}/>
             </Col>
         </Row>
         <Row>
