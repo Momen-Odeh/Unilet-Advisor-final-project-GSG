@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -15,6 +15,10 @@ const useStyles = createUseStyles({
 });
 const KeepTouch = () => {
     const classes = useStyles();
+    const [searchText,setSearchText]  = useState("")
+    function handleSubscribeBtn(){
+        
+    }
   return (
     <Container className={classes.Container}>
         <Row className='mb-3'>
@@ -29,7 +33,7 @@ const KeepTouch = () => {
         </Row>
         <Row className='justify-content-center mb-5'>
             <Col className='text-center' lg={5} md={7}>
-                <SearchInput placeHolder="Enter Your Email Here" btnText="Subscribe" />
+                <SearchInput placeHolder="Enter Your Email Here" btnText="Subscribe" onClick={handleSubscribeBtn} txetHandel={{searchText,setSearchText}} />
             </Col>
         </Row>
     </Container>

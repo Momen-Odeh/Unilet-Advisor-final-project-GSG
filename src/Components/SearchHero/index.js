@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,6 +8,7 @@ import SecondaryText from '../../Components/SecondaryText';
 import BG from './images/SearchBG.png'
 import PrimaryTitle from '../PrimaryTitle';
 import SearchInput from '../SearchInput';
+import { useNavigate} from 'react-router-dom';
 const useStyle =createUseStyles({
   Container:{
     backgroundImage:`url('${BG}')`,
@@ -26,6 +27,19 @@ const useStyle =createUseStyles({
 })
 const SearchHero = () => {
       const classes = useStyle();
+      const [searchText,setSearchText]  = useState("")
+      const navigate = useNavigate();
+      function handleSearchBtn(){
+          let val = searchText.trim()
+          if(val.length === 0)
+          {
+            navigate(`/ReviewSearchResult/ALL`)
+          }
+          else{
+            navigate(`/ReviewSearchResult/${val}`)
+          }
+          
+        }
   return (
     <Container fluid className={classes.Container}>
       <Row className='mb-2'>
@@ -43,7 +57,7 @@ const SearchHero = () => {
             <SecondaryText text="Street Address :" weightText={600} sizeText={17} lineHeight={23.15} center/>
         </Col>
         <Col className='text-center' lg={5} md={6} sm={8} xs={12}>
-          <SearchInput placeHolder="Start typing the address of the property" btnText="Search"/>
+          <SearchInput placeHolder="Start typing the address of the property" btnText="Search" txetHandel={{searchText,setSearchText}} onClick={handleSearchBtn}/>
         </Col>
       </Row>
     </Container>

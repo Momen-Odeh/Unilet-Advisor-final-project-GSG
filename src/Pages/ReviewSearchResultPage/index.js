@@ -5,11 +5,11 @@ import Container from 'react-bootstrap/Container';
 import PrimaryTitle from '../../Components/PrimaryTitle';
 import SecondaryText from '../../Components/SecondaryText';
 import Cards from '../../Components/Cards';
-import ButtonAction from '../../Components/ButtonAction';
 import SearchInput from '../../Components/SearchInput';
 import SortResult from '../../Components/SortResult';
 import {createUseStyles} from 'react-jss'
 import RetriveData from '../../Firebase/RetriveData';
+import {useParams,useNavigate} from 'react-router-dom'
 const useStyle = createUseStyles({
   RowText:{
     justifyContent:"space-between",
@@ -23,11 +23,40 @@ const useStyle = createUseStyles({
 const ReviewSearchResultPage = () => {
   const clasess = useStyle()
   const [places, setPlaces] = useState([]);
+  const {title} = useParams("title")
+  const navigate = useNavigate()
+  const [searchText,setSearchText]  = useState("")
   useEffect(()=>{
       RetriveData("Places").then((resp)=>{
+        if(title === "ALL")
+        {
           setPlaces(resp);
+        }else{
+          const filterData= []
+          resp.map((item)=>{
+            if(item.title.toLowerCase().includes(title))
+            {
+              
+              filterData.push(item)
+            }
+          })
+          setPlaces(filterData);
+        }
+          
       })
-  },[])
+  },[title])
+
+  function handleSearchBtn(){
+    let val = searchText.trim()
+    if(val.length === 0)
+    {
+      navigate(`/ReviewSearchResult/ALL`)
+    }
+    else{
+      navigate(`/ReviewSearchResult/${val}`)
+    }
+    
+  }
   return (
     <Container>
         <Row className='mb-5'>
@@ -40,7 +69,7 @@ const ReviewSearchResultPage = () => {
                 <div className={clasess.ColText}>
                   <SecondaryText  text="Search for a specific UK address or town" weightText={400} lineHeight={23.15} sizeText={17}/>
                 </div>
-                <SearchInput btnText="Search" placeHolder="Start typing the address of the property"/>
+                <SearchInput btnText="Search" placeHolder="Start typing the address of the property" txetHandel={{searchText,setSearchText}} onClick={handleSearchBtn}/>
             </Col>
             <Col lg={3} md={3} xs={12}>
                 <SortResult/>

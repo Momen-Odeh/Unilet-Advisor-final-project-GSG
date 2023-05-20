@@ -20,7 +20,7 @@ const useStyles  = createUseStyles({
   
 })
 
-const SearchInput = ({placeHolder,btnText}) => {
+const SearchInput = ({placeHolder,btnText,onClick,txetHandel}) => {
     const classes = useStyles ();
   return (
     <InputGroup className={classes.InputGroup}>
@@ -28,15 +28,10 @@ const SearchInput = ({placeHolder,btnText}) => {
         <Form.Control
           placeholder={placeHolder}
           className={classes.Form}
+          value={txetHandel.searchText}
+          onChange={(e)=>txetHandel.setSearchText(e.target.value)}
         />
-        <ButtonAction text={btnText} dark bold onClick={async()=>{
-          // get data from external source
-          let responce =await RetriveData("Users")
-          responce.docs.map((item)=>console.log(item.data()))
-          
-          
-          
-        }}/>
+        <ButtonAction text={btnText} dark bold onClick={onClick}/>
 
     </InputGroup>
   )

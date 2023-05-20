@@ -6,6 +6,7 @@ import {createUseStyles} from 'react-jss'
 import DarkTitle from '../../Components/DarkTitle';
 import SecondaryText from '../../Components/SecondaryText';
 import ButtonAction from '../ButtonAction';
+import {useNavigate} from 'react-router-dom'
 const useStyle =createUseStyles({
   Container:{
     backgroundImage:(BG)=>`url('${BG}')`,
@@ -20,6 +21,7 @@ const useStyle =createUseStyles({
 })
 const GeneralHero = ({BG,title,subTitle,notFound}) => {
   const classes = useStyle(BG);
+  const navigate = useNavigate()
   return (
     <Container fluid className={classes.Container}>
       <Row className='mb-3'>
@@ -36,7 +38,7 @@ const GeneralHero = ({BG,title,subTitle,notFound}) => {
         notFound&&  
         <Row>
           <Col className='text-center'>
-            <ButtonAction text="Back to home page" bold/>
+            <ButtonAction text="Back to home page" bold onClick={()=>navigate("/")}/>
           </Col>
         </Row>
       }

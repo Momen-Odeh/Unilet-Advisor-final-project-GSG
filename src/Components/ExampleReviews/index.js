@@ -44,7 +44,7 @@ const ExampleReviews = () => {
         </Row>
         <Row>
             <Col className='text-center'>
-                <ButtonAction text="View All" dark bold onClick={()=>navigate("/ReviewSearchResult")}/>
+                <ButtonAction text="View All" dark bold onClick={()=>navigate("/ReviewSearchResult/ALL")}/>
             </Col>
         </Row>
     </Container>

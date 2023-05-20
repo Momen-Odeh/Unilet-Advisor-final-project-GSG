@@ -69,7 +69,7 @@ const Header = () => {
           <Nav className={`me-auto ${classes.Nav}`}>
             <Nav.Link as={Link} to={"/"} className={classes.NavLink} >Home</Nav.Link>
             <Nav.Link as={Link} to={"/ReviewSearch"} className={classes.NavLink} href="#link1">Review a Property</Nav.Link>
-            <Nav.Link as={Link} to={"/ReviewSearchResult"} className={classes.NavLink}>Read Reviews</Nav.Link>
+            <Nav.Link as={Link} to={"/ReviewSearchResult/ALL"} className={classes.NavLink}>Read Reviews</Nav.Link>
             <Nav.Link as={Link} to={"/NewPost"} className={classes.NavLink}>Create Post</Nav.Link>
             
             
