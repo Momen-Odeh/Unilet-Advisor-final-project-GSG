@@ -37,8 +37,7 @@ const NewComment = ({title,comments,setNewComments,AverageRating,setAverageRatin
 
     }
     function handleSubmit(){
-        let data
-            RetriveData("Users").then((data)=>{
+            RetriveData("Users","email").then((data)=>{
             let respData = data.filter((x)=>x.email === Cookies.UserEmail)
             comments.push({
                 comment,
