@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -9,6 +9,7 @@ import ButtonAction from '../../Components/ButtonAction';
 import SearchInput from '../../Components/SearchInput';
 import SortResult from '../../Components/SortResult';
 import {createUseStyles} from 'react-jss'
+import RetriveData from '../../Firebase/RetriveData';
 const useStyle = createUseStyles({
   RowText:{
     justifyContent:"space-between",
@@ -21,7 +22,12 @@ const useStyle = createUseStyles({
 })
 const ReviewSearchResultPage = () => {
   const clasess = useStyle()
-
+  const [places, setPlaces] = useState([]);
+  useEffect(()=>{
+      RetriveData("Places").then((resp)=>{
+          setPlaces(resp);
+      })
+  },[])
   return (
     <Container>
         <Row className='mb-5'>
@@ -42,7 +48,7 @@ const ReviewSearchResultPage = () => {
         </Row>
         <Row className='mb-4'>
             <Col>
-                <Cards places={[]}/>
+                <Cards places={places}/>
             </Col>
         </Row>
         <Row className='justify-content-center'>

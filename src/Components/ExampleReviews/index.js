@@ -21,11 +21,9 @@ const ExampleReviews = () => {
     const navigate = useNavigate();
     const [places, setPlaces] = useState([]);
     useEffect(()=>{
-        RetriveData("Places").then((resp)=>{
+        RetriveData("Places","publishDate",3).then((resp)=>{
             setPlaces(resp);
         })
-        
-        
     },[])
   return (
     <Container className={classes.Container}>
