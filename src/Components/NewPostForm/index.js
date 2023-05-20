@@ -89,7 +89,6 @@ const NewPostForm = () => {
   async function handleSubmit(){
     
     try {
-      console.log(postInfo);
       if(!postInfo.title)
       {
         throw new Error("please enter title")
@@ -104,7 +103,6 @@ const NewPostForm = () => {
       }
       else{
         let res = postInfo.imagesUrl.filter((x)=> x=== "")
-        console.log("res",res);
         if(res.length > 0)
         {
           throw new Error("plese Enter images URL")

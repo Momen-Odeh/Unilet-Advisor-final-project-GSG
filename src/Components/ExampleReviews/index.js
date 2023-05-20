@@ -22,8 +22,7 @@ const ExampleReviews = () => {
     const [places, setPlaces] = useState([]);
     useEffect(()=>{
         RetriveData("Places").then((resp)=>{
-            const data = resp.docs.map((item) => item.data());
-            setPlaces(data);
+            setPlaces(resp);
         })
         
         

@@ -24,10 +24,7 @@ const Cards = ({places}) => {
     <Row className={classes.Row}>
         {
         places.map((item,index)=>
-        <Col key={index} lg={4} md={6} xs={12}>  
-        {
-            console.log(item)
-        }
+        <Col key={index} lg={4} md={6} xs={12}> 
             <CardAction title={item.title} img={item.imagesUrl[0]} value={2.9} numRated={59} clickOperation={()=>navigate(`/ReviewDetails/${item.title}`)}/>
         </Col>
         )}

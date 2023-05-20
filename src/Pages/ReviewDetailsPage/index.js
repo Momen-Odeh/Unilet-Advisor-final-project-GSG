@@ -14,14 +14,12 @@ const ReviewDetailsPage = () => {
   const [place, setPlace] = useState({});
   const [review, setReview] = useState({});
     useEffect(()=>{
-        RetriveData("Places").then((resp)=>{
-            const data = resp.docs.map((item) => item.data());
-            let respData = data.filter((x)=>x.title === title)
-            setPlace(respData[0]);
-            setReview(respData[0].AverageRating)
-            
-        })
-        
+      RetriveData("Places").then(
+        (data)=>{
+          let respData = data.filter((x)=>x.title === title)
+          setPlace(respData[0]);
+          setReview(respData[0].AverageRating)
+      }) 
     },[])
   return (
     <Container>

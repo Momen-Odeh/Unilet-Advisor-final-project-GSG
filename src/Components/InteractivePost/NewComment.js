@@ -38,10 +38,8 @@ const NewComment = ({title,comments,setNewComments,AverageRating,setAverageRatin
     }
     function handleSubmit(){
         let data
-            RetriveData("Users").then((resp)=>{
-            data = resp.docs.map((item) => item.data());
+            RetriveData("Users").then((data)=>{
             let respData = data.filter((x)=>x.email === Cookies.UserEmail)
-            console.log(respData);
             comments.push({
                 comment,
                 auther:respData[0].fullName
