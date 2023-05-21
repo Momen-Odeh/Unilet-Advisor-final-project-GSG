@@ -6,7 +6,7 @@ import PrimaryTitle from '../PrimaryTitle';
 import SecondaryText from '../SecondaryText';
 import SearchInput from '../SearchInput';
 import {createUseStyles} from 'react-jss'
-
+import Swal from 'sweetalert2'
 const useStyles = createUseStyles({
     Container:{
         marginTop:"100px",
@@ -17,7 +17,12 @@ const KeepTouch = () => {
     const classes = useStyles();
     const [searchText,setSearchText]  = useState("")
     function handleSubscribeBtn(){
-        
+        Swal.fire({
+            title: 'Not permit access',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'LogIn'
+          })
     }
   return (
     <Container className={classes.Container}>
