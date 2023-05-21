@@ -9,6 +9,11 @@ import RateContainer from '../RateContainer';
 const useStyles  = createUseStyles({
     Card:{
         width:"100%",
+    },
+    img:{
+      width:"100%",
+      height:"250px",
+      
     }
     
   })
@@ -16,7 +21,7 @@ const CardAction = ({title,img,value,numRated,clickOperation}) => {
     const classes = useStyles ();
   return (
     <Card className={classes.Card}>
-      <Card.Img variant="top" src={home} />
+      <Card.Img variant="top" src={img} className={classes.img}/>
       <Card.Body>
         <Card.Title>
           <DarkTitle text={title}/>

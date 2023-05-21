@@ -5,7 +5,7 @@ import DarkTitle from '../DarkTitle';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ProgressBarContainer from './ProgressBarContainer';
 
-const AverageRating = () => {
+const AverageRating = ({rate}) => {
     
   return (
     <>
@@ -16,11 +16,11 @@ const AverageRating = () => {
         </Row>
         <Row className=''>
             <Col>
-                <ProgressBarContainer starNum={1} Percentage={10}/>
-                <ProgressBarContainer starNum={2} Percentage={20}/>
-                <ProgressBarContainer starNum={3} Percentage={30}/>
-                <ProgressBarContainer starNum={4} Percentage={25}/>
-                <ProgressBarContainer starNum={5} Percentage={15}/>
+                <ProgressBarContainer starNum={1} Percentage={rate?.star1 ? rate.star1:0}/>
+                <ProgressBarContainer starNum={2} Percentage={rate?.star2 ? rate.star2:0}/>
+                <ProgressBarContainer starNum={3} Percentage={rate?.star3 ? rate.star3:0}/>
+                <ProgressBarContainer starNum={4} Percentage={rate?.star4 ? rate.star4:0}/>
+                <ProgressBarContainer starNum={5} Percentage={rate?.star5 ? rate.star5:0}/>
             </Col>
         </Row>
         <Row className='mb-5'>

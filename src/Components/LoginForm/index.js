@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,6 +9,10 @@ import Form from 'react-bootstrap/Form';
 import InputField from '../InputField';
 import ButtonAction from '../ButtonAction';
 import HR from '../HR';
+import LogInFirebase from '../../Firebase/LogInFirebase';
+import Alert from 'react-bootstrap/Alert';
+import { useNavigate,Link  } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 const useStyle =createUseStyles({
   check:{
       color:"#3C3C3B",
@@ -26,11 +30,41 @@ const useStyle =createUseStyles({
     color:"#0FB3AF",
     fontWeight:"600",
     fontSize:"14px",
-    lineHeight:"19.07px"
+    lineHeight:"19.07px",
+    "&:hover":{
+      textDecoration: "none",
+    }
   }
 })
 const LoginForm = () => {
   const classes = useStyle();
+  const [Cookies, setCookies] = useCookies();
+  const [logInInfo,setlogInInfo] = useState({})
+  const [err, setErr] = useState();
+  const navigate = useNavigate();
+  function handleLogInInfo(e)
+  {
+    setlogInInfo(
+      {
+        ...logInInfo,
+        [e.target.name]:e.target.value
+      }
+    )
+  }
+  async function handleLogIn(){
+    
+    try {
+      let token = await LogInFirebase(logInInfo.email,logInInfo.password);
+      
+      setCookies("UserToken",token.user.accessToken)
+      setCookies("UserEmail",token.user.email)
+      navigate('/');
+      setErr()
+    } catch (error) {
+      setErr(error.message)
+    }
+    
+  }
   return (
     <>
     <Container className={classes.Container}>
@@ -41,12 +75,12 @@ const LoginForm = () => {
       </Row>
       <Row className='justify-content-center mb-4'>
         <Col lg={6} md={10} xs={12}>
-            <InputField type="email"/>
+            <InputField type="email" onChange={handleLogInInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4' >
         <Col lg={6} md={10} xs={12}>
-            <InputField type="password"/>
+            <InputField type="password" onChange={handleLogInInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4'>
@@ -63,7 +97,7 @@ const LoginForm = () => {
       </Row>
       <Row className='mb-1' >
         <Col className='text-center'>
-            <ButtonAction text="Log In" bold/>
+            <ButtonAction text="Log In" bold onClick={handleLogIn}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-1' >
@@ -75,10 +109,19 @@ const LoginForm = () => {
         <Col className='text-center' lg={6} md={10} xs={12}>
             <span>
               <SecondaryText text="Don’t have an account?" weightText={600} sizeText={14} lineHeight={19.07}  />
-              <span className={classes.signUP}> SIGN UP</span>
+              <Link to={"/signUp"} className={classes.signUP}> SIGN UP</Link>
             </span>
         </Col>
       </Row>
+      {err&&
+      <Row className='justify-content-center mb-1' >
+        <Col className='text-center' lg={6} md={10} xs={12}>
+        <Alert  variant={"danger"}>
+          <SecondaryText text={err}/>
+        </Alert>
+        </Col>
+      </Row>
+      }
     </Container>
     </>
   )

@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import ButtonAction from '../ButtonAction';
 import { createUseStyles } from 'react-jss';
-
+import RetriveData from '../../Firebase/RetriveData';
 const useStyles  = createUseStyles({
     InputGroup:{
         border:"1px solid #3C3C3B",
@@ -20,7 +20,7 @@ const useStyles  = createUseStyles({
   
 })
 
-const SearchInput = ({placeHolder,btnText}) => {
+const SearchInput = ({placeHolder,btnText,onClick,txetHandel}) => {
     const classes = useStyles ();
   return (
     <InputGroup className={classes.InputGroup}>
@@ -28,8 +28,10 @@ const SearchInput = ({placeHolder,btnText}) => {
         <Form.Control
           placeholder={placeHolder}
           className={classes.Form}
+          value={txetHandel.searchText}
+          onChange={(e)=>txetHandel.setSearchText(e.target.value)}
         />
-        <ButtonAction text={btnText} dark bold/>
+        <ButtonAction text={btnText} dark bold onClick={onClick}/>
 
     </InputGroup>
   )

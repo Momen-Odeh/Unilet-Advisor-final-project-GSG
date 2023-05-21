@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -6,13 +6,14 @@ import { AiTwotoneLike } from 'react-icons/ai';
 import { AiTwotoneDislike } from 'react-icons/ai';
 import { AiOutlineComment } from 'react-icons/ai';
 
-import arya from "./images/arya.jpg"
+import user from "./images/user.png"
 
 import { createUseStyles } from 'react-jss';
 import InteractiveIcon from './InteractiveIcon';
 import Comment from './Comment';
 import NewComment from './NewComment';
 import HR from '../HR';
+import UpdateData from '../../Firebase/UpdateData';
 const useStyles  = createUseStyles({
     Row:{
         // justifyContent:"flex-start",
@@ -22,30 +23,93 @@ const useStyles  = createUseStyles({
     }
 })
 
-const InteractivePost = () => {
+const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRating}) => {
   const classes = useStyles();
-    const comments = [
-        {image:arya,auther:"Arya Stark",comment:"Grace is a second year History student originally from Suffolk. She's an avid feminist,podcast addict and Quorn scotch egg lover who loves to write, dance and read."},
-        {image:arya,auther:"Arya Stark",comment:"Grace is a second year History student originally from Suffolk. She's an avid feminist,podcast addict and Quorn scotch egg lover who loves to write, dance and read."},
-    ]
+    const [like,setLike] = useState(false)
+    const [disLike,setDisLike] = useState(false)
+    const [commentsActive,setLCommentsActive] = useState(false)
+    const [newComments,setNewComments] = useState()
+    const [newInteractions,setNewInteractions]=useState()
+    function handleLike() {
+        setLike(!like);
+      
+        if (disLike) {
+          setNewInteractions((prevInteractions) => ({
+            ...prevInteractions,
+            like: like ? prevInteractions.like - 1 : prevInteractions.like + 1,
+            disLike: prevInteractions.disLike - 1,
+          }));
+          setDisLike(!disLike);
+        } else {
+          setNewInteractions((prevInteractions) => ({
+            ...prevInteractions,
+            like: like ? prevInteractions.like - 1 : prevInteractions.like + 1,
+          }));
+        }
+      }
+    function handleDisLike() {
+        setDisLike(!disLike)
+        // 
+        if(like)
+        {
+            setNewInteractions((prevInteractions) => ({
+                ...prevInteractions,
+                disLike: disLike ? prevInteractions.disLike - 1 : prevInteractions.disLike + 1,
+                like:prevInteractions.like - 1,
+            }));
+            setLike(!like)
+        }
+        else
+        {
+            setNewInteractions((prevInteractions) => ({
+                ...prevInteractions,
+                disLike: disLike ? prevInteractions.disLike - 1 : prevInteractions.disLike + 1,
+            }));
+        }
+        // 
+        
+        
+    }
+
+    useEffect(() => {
+        UpdateData("Places","title",title, {
+          interactions: newInteractions,
+        });
+      }, [newInteractions]);
+    // 
+    // 
+    useEffect(() => {
+        if (comments) {
+            setNewComments(comments)
+        }
+      }, [comments]);
+    //
+    // 
+    useEffect(() => {
+        if (interactions) {
+            setNewInteractions(interactions)
+        }
+      }, [interactions]);
+    //    
   return (
     <div>
     <HR color="#EAEAEA"/>
     <Row className={classes.Row}>
         <Col className={classes.Col} xs={'auto'}>
-            <InteractiveIcon Icon={AiTwotoneLike} label={"likes"} count={21} active={true}/>
+            <InteractiveIcon Icon={AiTwotoneLike} label={"likes"} count={newInteractions?.like} active={like} onClick={handleLike}/>
         </Col>
         <Col className={classes.Col} xs={'auto'}>
-            <InteractiveIcon Icon={AiTwotoneDislike} label={"Dislikes"} count={21} active={false}/>
+            <InteractiveIcon Icon={AiTwotoneDislike} label={"Dislikes"} count={newInteractions?.disLike} active={disLike} onClick={handleDisLike}/>
         </Col>
         <Col className={classes.Col} xs={'auto'}>
-            <InteractiveIcon Icon={AiOutlineComment} label={"Comments"} count={21} active={false}/>
+            <InteractiveIcon Icon={AiOutlineComment} label={"Comments"} count={newComments?.length} active={commentsActive} onClick={()=>{setLCommentsActive(!commentsActive)}}/>
         </Col>
     </Row>
     <HR color="#EAEAEA"/>
     
     {
-    comments.map(
+    commentsActive&&
+    newComments?.map(
         (item,index)=>
         <div key={index}>
             <Comment  {...item}/>
@@ -54,7 +118,10 @@ const InteractivePost = () => {
         
     )
     }
-    <NewComment/>
+    {
+        commentsActive&&
+        <NewComment title={title} comments={comments} setNewComments={setNewComments} AverageRating={AverageRating} setAverageRating={setAverageRating}/>
+    }
     </div>
   )
 }

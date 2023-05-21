@@ -32,7 +32,7 @@ const ProgressBarContainer = ({starNum,Percentage}) => {
             <ProgressBar className={classes.progressBar} now={Percentage}/>
         </Col>
         <Col xs="auto" className={classes.Col}>
-            <SecondaryText text={`${Percentage}%`} sizeText={17} weightText={400} lineHeight={23.15}/>
+            <SecondaryText text={`${Percentage}`} sizeText={17} weightText={400} lineHeight={23.15}/>
         </Col>
     </Row>
         

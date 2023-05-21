@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +6,9 @@ import PrettyRating from "pretty-rating-react";
 import ButtonAction from '../ButtonAction';
 import SecondaryText from '../SecondaryText';
 import { createUseStyles } from 'react-jss';
+import RetriveData from '../../Firebase/RetriveData';
+import { useCookies } from 'react-cookie';
+import UpdateData from '../../Firebase/UpdateData';
 const useStyles  = createUseStyles({
     textAreaContainer:{
         marginTop:"8px"
@@ -24,9 +27,38 @@ const useStyles  = createUseStyles({
     }
 })
 
-const NewComment = () => {
+const NewComment = ({title,comments,setNewComments,AverageRating,setAverageRating}) => {
     const classes = useStyles();
-    const [rateValue,setRateValue] = useState(0);
+    const [rateValue,setRateValue] = useState(1);
+    const [comment,setComment] = useState("")
+    const [Cookies, setCookies] = useCookies();
+    function handelComment(e){
+        setComment(e.target.value)
+
+    }
+    function handleSubmit(){
+            RetriveData("Users","email").then((data)=>{
+            let respData = data.filter((x)=>x.email === Cookies.UserEmail)
+            comments.push({
+                comment,
+                auther:respData[0].fullName
+
+            })
+            AverageRating[`star${rateValue}`]++
+            setAverageRating({
+                ...AverageRating
+            })
+            
+            UpdateData("Places","title",title,{
+                Comments:comments,
+                AverageRating:AverageRating
+            })
+            setNewComments([...comments])
+        })
+        setComment("")
+
+    }
+    
   return (
     <>
     <Row className={classes.Row}>
@@ -36,7 +68,7 @@ const NewComment = () => {
     </Row>
     <Row className={`${classes.textAreaContainer} ${classes.Row}`}>
         <Col>
-            <Form.Control as="textarea" className={classes.textArea}/>
+            <Form.Control as="textarea" className={classes.textArea} value={comment} onChange={handelComment}/>
         </Col>
     </Row>
     <Row className={`${classes.Row} ${classes.Row}`}>
@@ -50,7 +82,7 @@ const NewComment = () => {
     </Row>
     <Row className={`${classes.postCommint} ${classes.Row} mb-5`}>
         <Col>
-            <ButtonAction text="Post Comment" bold/>
+            <ButtonAction text="Post Comment" bold onClick={handleSubmit}/>
         </Col>
     </Row>
     </>

@@ -32,7 +32,7 @@ const useStyles  = createUseStyles({
         height:"30px"
     },
 })
-const InputField = ({type}) => {
+const InputField = ({type,onChange}) => {
     const classes = useStyles ();
     let data
     if(type === "user")
@@ -72,7 +72,7 @@ const InputField = ({type}) => {
         <Form.Group>
             <InputGroup className={classes.InputGroup}>
                 <InputGroup.Text className={classes.Text}><img src={data.icon} draggable={false} alt="icon" className={classes.icon}/></InputGroup.Text>
-                <Form.Control className={classes.Control} type={data.type} placeholder={data.placeholder} />
+                <Form.Control className={classes.Control} name={type} type={data.type} placeholder={data.placeholder} onChange={onChange} />
             </InputGroup>
         </Form.Group>
     </Form>

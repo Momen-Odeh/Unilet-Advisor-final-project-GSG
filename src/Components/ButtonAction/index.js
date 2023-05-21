@@ -35,11 +35,11 @@ const useStyles  = createUseStyles({
   
 })
 
-const ButtonAction = ({text,arrow,dark,bold}) => {
+const ButtonAction = ({text,arrow,dark,bold,onClick}) => {
 
   const classes = useStyles ({dark,bold});
   return (
-    <Button  className={classes.Button}>
+    <Button  className={classes.Button} onClick={onClick}>
       {text}
       {arrow &&<img src={arrowImg} className={classes.img} alt=''/>}
     </Button>

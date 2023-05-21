@@ -31,13 +31,12 @@ const useStyles  = createUseStyles({
         }
     }
 })
-const SortResult = () => {
+const SortResult = ({handleSort}) => {
     const classes = useStyles ();
-    const [text,setText] = useState("Most Recent");
   return (
     <InputGroup className={classes.InputGroup} >
         <Form.Control aria-label="Text input with dropdown button" 
-        value={text}
+        value={handleSort.sortText}
         readOnly
         className={classes.Form}
         variant="dark"
@@ -48,7 +47,7 @@ const SortResult = () => {
         className={classes.DropdownButton}
         menuVariant="dark"
           title=""
-          onSelect={(value)=>{setText(value)}}
+          onSelect={(value)=>{handleSort.setSortText(value)}}
         >
           <Dropdown.Item eventKey="Most Recent" className={classes.Item} >Most Recent</Dropdown.Item>
           <Dropdown.Divider />

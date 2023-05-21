@@ -24,6 +24,9 @@ const useStyles  = createUseStyles({
   lineHeight:"13.62px",
   color:"#7E7E7E",
   letterSpacing:"0.2px"
+ },
+ img:{
+  cursor:"pointer"
  }
     
 })
@@ -42,7 +45,7 @@ const RateContainer = ({value,numRated,clickOperation}) => {
           </Row>
         </Col>
         <Col xs={2} className={classes.Col}>
-          <img src={go} alt="go" onClick={clickOperation}/>
+          <img src={go} className={classes.img} alt="go" onClick={clickOperation}/>
         </Col>
       </Row>
     </Container>

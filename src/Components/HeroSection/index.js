@@ -7,6 +7,8 @@ import ButtonAction from '../ButtonAction';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
+import { useNavigate } from 'react-router-dom';
 const useStyles  = createUseStyles({
     Hero:{
         backgroundImage:`url(${BG})`,
@@ -25,9 +27,9 @@ const useStyles  = createUseStyles({
 })
 
 
-
 const HeroSection = () => {
     const classes = useStyles ();
+    const navigate = useNavigate();
   return (
     <Container className={classes.Hero} fluid>
         <Row>
@@ -42,7 +44,7 @@ const HeroSection = () => {
         </Row>
         <Row>
             <Col>
-                <ButtonAction text="Search Now" dark bold/>    
+                <ButtonAction onClick={()=>navigate('/ReviewSearch')} text="Search Now" dark bold />    
             </Col>
         </Row>
         

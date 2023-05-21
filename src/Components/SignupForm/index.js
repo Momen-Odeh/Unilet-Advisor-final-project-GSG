@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {createUseStyles} from 'react-jss'
 import DarkTitle from '../../Components/DarkTitle';
 import SecondaryText from '../../Components/SecondaryText';
-import Form from 'react-bootstrap/Form';
 import InputField from '../InputField';
 import ButtonAction from '../ButtonAction';
 import HR from '../HR';
+import Alert from 'react-bootstrap/Alert';
+import SignUpFirebase from '../../Firebase/SignUpFirebase';
+import {useCookies} from "react-cookie"
+import StoreNewData from '../../Firebase/StoreNewData';
+import { useNavigate,Link  } from 'react-router-dom';
 const useStyle =createUseStyles({
   Container:{
     marginTop:"100px",
@@ -19,11 +23,51 @@ const useStyle =createUseStyles({
     color:"#0FB3AF",
     fontWeight:"600",
     fontSize:"14px",
-    lineHeight:"19.07px"
+    lineHeight:"19.07px",
+    "&:hover":{
+      textDecoration: "none",
+    }
   }
 })
 const SignupForm = () => {
   const classes = useStyle();
+  const [signUpInfo,setSignUpInfo] = useState({})
+  const [err, setErr] = useState();
+  const [Cookies, setCookies] = useCookies();
+  const navigate = useNavigate();
+
+  function handleSignUpInfo(e)
+  {
+    setSignUpInfo(
+      {
+        ...signUpInfo,
+        [e.target.name]:e.target.value
+      }
+    )
+  }
+  async function handleSignUp(){
+    
+    try {
+      if(!signUpInfo.user)
+      {
+        throw new Error("please enter Full Name")
+      }else if(signUpInfo.password !== signUpInfo.confirmPassword)
+      {
+        throw new Error("password and confirm password not matched, try again")
+      }
+      let token = await SignUpFirebase(signUpInfo.email,signUpInfo.password);
+      // setCookies("UserToken",token.user.accessToken)
+      StoreNewData("Users",{
+        fullName:signUpInfo.user,
+        email:signUpInfo.email
+      })
+      setErr()
+      navigate('/login');
+    } catch (error) {
+      setErr(error.message)
+    }
+    
+  }
   return (
     <>
     <Container className={classes.Container}>
@@ -34,27 +78,27 @@ const SignupForm = () => {
       </Row>
       <Row className='justify-content-center mb-4'>
         <Col lg={6} md={10} xs={12}>
-            <InputField type="user"/>
+            <InputField type="user" onChange={handleSignUpInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4' >
         <Col lg={6} md={10} xs={12}>
-            <InputField type="email"/>
+            <InputField type="email" onChange={handleSignUpInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4' >
         <Col lg={6} md={10} xs={12}>
-            <InputField type="password"/>
+            <InputField type="password" onChange={handleSignUpInfo}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-4' >
         <Col lg={6} md={10} xs={12}>
-            <InputField type="confirmPassword"/>
+            <InputField type="confirmPassword" onChange={handleSignUpInfo}/>
         </Col>
       </Row>
       <Row className='mb-1' >
         <Col className='text-center'>
-            <ButtonAction text="Submit" bold/>
+            <ButtonAction text="Submit" bold onClick={handleSignUp}/>
         </Col>
       </Row>
       <Row className='justify-content-center mb-1' >
@@ -66,10 +110,19 @@ const SignupForm = () => {
         <Col className='text-center' lg={6} md={10} xs={12}>
             <span>
               <SecondaryText text="Already have an account?" weightText={600} sizeText={14} lineHeight={19.07}/>
-              <span className={classes.login}> Log In</span>
+              <Link to={"/login"}  className={classes.login}> Log In</Link>
             </span>
         </Col>
       </Row>
+      {err&&
+      <Row className='justify-content-center mb-1' >
+        <Col className='text-center' lg={6} md={10} xs={12}>
+        <Alert  variant={"danger"}>
+          <SecondaryText text={err}/>
+        </Alert>
+        </Col>
+      </Row>
+      }
     </Container>
     </>
   )

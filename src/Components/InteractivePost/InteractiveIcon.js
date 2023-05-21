@@ -26,13 +26,12 @@ const useStyles  = createUseStyles({
 
 // <div><AiTwotoneLike/><AiTwotoneDislike/><AiOutlineComment/></div>
 
-const InteractiveIcon = ({Icon,label,count,active}) => {
-    const [action, setLike] = useState(active);
-    const classes = useStyles(action);
+const InteractiveIcon = ({Icon,label,count,active,onClick}) => {
+    const classes = useStyles(active);
 
   return (
     <span 
-    onClick={()=>{setLike(!action)}}
+    onClick={onClick}
     className={classes.interact}>
         <Icon className={classes.icon}/> {count} {label}
     </span>
