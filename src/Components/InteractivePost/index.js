@@ -14,6 +14,9 @@ import Comment from './Comment';
 import NewComment from './NewComment';
 import HR from '../HR';
 import UpdateData from '../../Firebase/UpdateData';
+import {useCookies} from "react-cookie"
+import swalFire from '../Swal/swalFire';
+import { useNavigate,Navigate} from 'react-router-dom';
 const useStyles  = createUseStyles({
     Row:{
         // justifyContent:"flex-start",
@@ -30,9 +33,12 @@ const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRa
     const [commentsActive,setLCommentsActive] = useState(false)
     const [newComments,setNewComments] = useState()
     const [newInteractions,setNewInteractions]=useState()
+    const [Cookies, setCookies] = useCookies();
+    const navigate = useNavigate()
+
     function handleLike() {
+      if(Cookies.UserToken){
         setLike(!like);
-      
         if (disLike) {
           setNewInteractions((prevInteractions) => ({
             ...prevInteractions,
@@ -47,7 +53,12 @@ const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRa
           }));
         }
       }
+      else{
+        swalFire(navigate)
+      }
+      }
     function handleDisLike() {
+      if(Cookies.UserToken){
         setDisLike(!disLike)
         // 
         if(like)
@@ -67,8 +78,20 @@ const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRa
             }));
         }
         // 
+      }
+      else{
+        swalFire(navigate)
+      }
         
-        
+    }
+
+    function handleCommentActive(){
+      if(Cookies.UserToken){
+      setLCommentsActive(!commentsActive)
+      }
+      else{
+        swalFire(navigate)
+      }
     }
 
     useEffect(() => {
@@ -86,7 +109,7 @@ const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRa
     //
     // 
     useEffect(() => {
-        if (interactions) {
+        if (interactions ) {
             setNewInteractions(interactions)
         }
       }, [interactions]);
@@ -102,11 +125,10 @@ const InteractivePost = ({title,comments,interactions,AverageRating,setAverageRa
             <InteractiveIcon Icon={AiTwotoneDislike} label={"Dislikes"} count={newInteractions?.disLike} active={disLike} onClick={handleDisLike}/>
         </Col>
         <Col className={classes.Col} xs={'auto'}>
-            <InteractiveIcon Icon={AiOutlineComment} label={"Comments"} count={newComments?.length} active={commentsActive} onClick={()=>{setLCommentsActive(!commentsActive)}}/>
+            <InteractiveIcon Icon={AiOutlineComment} label={"Comments"} count={newComments?.length} active={commentsActive} onClick={handleCommentActive}/>
         </Col>
     </Row>
     <HR color="#EAEAEA"/>
-    
     {
     commentsActive&&
     newComments?.map(
