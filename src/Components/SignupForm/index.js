@@ -10,7 +10,6 @@ import ButtonAction from '../ButtonAction';
 import HR from '../HR';
 import Alert from 'react-bootstrap/Alert';
 import SignUpFirebase from '../../Firebase/SignUpFirebase';
-import {useCookies} from "react-cookie"
 import StoreNewData from '../../Firebase/StoreNewData';
 import { useNavigate,Link  } from 'react-router-dom';
 const useStyle =createUseStyles({
@@ -33,11 +32,11 @@ const SignupForm = () => {
   const classes = useStyle();
   const [signUpInfo,setSignUpInfo] = useState({})
   const [err, setErr] = useState();
-  const [Cookies, setCookies] = useCookies();
   const navigate = useNavigate();
 
   function handleSignUpInfo(e)
   {
+      
     setSignUpInfo(
       {
         ...signUpInfo,

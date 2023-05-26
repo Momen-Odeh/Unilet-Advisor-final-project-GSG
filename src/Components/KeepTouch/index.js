@@ -6,23 +6,19 @@ import PrimaryTitle from '../PrimaryTitle';
 import SecondaryText from '../SecondaryText';
 import SearchInput from '../SearchInput';
 import {createUseStyles} from 'react-jss'
-import Swal from 'sweetalert2'
 const useStyles = createUseStyles({
     Container:{
         marginTop:"100px",
         marginBottom:"100px"
-    }
+    },
 });
 const KeepTouch = () => {
     const classes = useStyles();
     const [searchText,setSearchText]  = useState("")
-    function handleSubscribeBtn(){
-        Swal.fire({
-            title: 'Not permit access',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText: 'LogIn'
-          })
+    
+    function handleSubscribe (){
+        
+        
     }
   return (
     <Container className={classes.Container}>
@@ -38,7 +34,7 @@ const KeepTouch = () => {
         </Row>
         <Row className='justify-content-center mb-5'>
             <Col className='text-center' lg={5} md={7}>
-                <SearchInput placeHolder="Enter Your Email Here" btnText="Subscribe" onClick={handleSubscribeBtn} txetHandel={{searchText,setSearchText}} />
+                <SearchInput placeHolder="Enter Your Email Here" btnText="Subscribe" onClick={handleSubscribe} txetHandel={{searchText,setSearchText}} />
             </Col>
         </Row>
     </Container>
