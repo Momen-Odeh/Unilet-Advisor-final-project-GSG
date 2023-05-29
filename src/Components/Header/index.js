@@ -7,6 +7,7 @@ import ButtonAction from '../ButtonAction';
 import { Link,useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import swalFire from '../Swal/swalFire';
+import Avatar from 'react-avatar';
 const useStyles  = createUseStyles({
     img:{
       padding:"0",
@@ -87,6 +88,7 @@ const Header = () => {
             
             
           </Nav>
+          {Cookies.UserToken&&<Nav.Link className={classes.NavLink} as={Link}><Avatar size="45" name={Cookies.UserName} round color='#0fb3af'/></Nav.Link>}
           <Nav.Link className={classes.NavLink} as={Link} to={"/login"}><ButtonAction text={btnText} onClick={handlelLogBtn}/></Nav.Link>
           
         </Navbar.Collapse>

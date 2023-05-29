@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import user from './images/user.png'
 import { createUseStyles } from 'react-jss';
+import Avatar from 'react-avatar';
 const useStyles  = createUseStyles({
     img:{
         width:"100px",
@@ -41,7 +42,8 @@ const Comment = ({auther,comment}) => {
   return (
     <Row className={classes.Row}>
         <Col xs={"auto"}>
-            <img className={classes.img} draggable={false} src={user} alt='img'/>
+            {/* <img className={classes.img} draggable={false} src={user} alt='img'/> */}
+            <Avatar name={auther} round color='#0fb3af'/>
         </Col>
         <Col className={classes.text}>
             <Row>
