@@ -80,8 +80,8 @@ const Header = () => {
             
             <Nav.Link as={Link} to={"/"} className={classes.NavLink} >Home</Nav.Link>
             <Nav.Link as={Link} to={"/ReviewSearch"} className={classes.NavLink}>Review Search</Nav.Link>
-            <Nav.Link as={Link} to={"/ReviewSearchResult/ALL"} className={classes.NavLink}>All Places</Nav.Link>
-            <Nav.Link onClick={handelSwal} className={classes.NavLink}>Create Post</Nav.Link>
+            <Nav.Link as={Link} to={"/ReviewSearchResult/ALL"} className={classes.NavLink}>Places</Nav.Link>
+            <Nav.Link onClick={handelSwal} className={classes.NavLink}>New Post</Nav.Link>
             
             
             
