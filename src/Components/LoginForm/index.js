@@ -13,6 +13,7 @@ import LogInFirebase from '../../Firebase/LogInFirebase';
 import Alert from 'react-bootstrap/Alert';
 import { useNavigate,Link  } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import RetriveData from '../../Firebase/RetriveData';
 const useStyle =createUseStyles({
   check:{
       color:"#3C3C3B",
@@ -55,11 +56,15 @@ const LoginForm = () => {
     
     try {
       let token = await LogInFirebase(logInInfo.email,logInInfo.password);
-      
+      let users = await RetriveData("Users","email")
+      let respData = users.filter((x)=>x.email === token.user.email)
+      let name = respData[0].fullName
       setCookies("UserToken",token.user.accessToken)
       setCookies("UserEmail",token.user.email)
+      setCookies("UserName",name)
       navigate('/');
       setErr()
+    
     } catch (error) {
       setErr(error.message)
     }

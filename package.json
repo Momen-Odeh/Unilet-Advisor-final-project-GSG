@@ -10,6 +10,7 @@
     "firebase": "^9.22.0",
     "pretty-rating-react": "^2.2.0",
     "react": "^18.2.0",
+    "react-avatar": "^5.0.3",
     "react-bootstrap": "^2.7.4",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
@@ -17,6 +18,7 @@
     "react-jss": "^10.10.0",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "sweetalert2": "^11.7.5",
     "web-vitals": "^2.1.4"
   },

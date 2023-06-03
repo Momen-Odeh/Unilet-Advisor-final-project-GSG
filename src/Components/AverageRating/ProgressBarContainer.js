@@ -14,7 +14,8 @@ const useStyle = createUseStyles({
   },
   Row:{
     alignItems:"center",
-    gap:"10px"
+    gap:"10px",
+    margin:"0 20px"
   },
   Col:{
     padding:"0",

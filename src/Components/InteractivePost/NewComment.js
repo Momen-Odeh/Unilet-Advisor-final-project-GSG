@@ -37,11 +37,9 @@ const NewComment = ({title,comments,setNewComments,AverageRating,setAverageRatin
 
     }
     function handleSubmit(){
-            RetriveData("Users","email").then((data)=>{
-            let respData = data.filter((x)=>x.email === Cookies.UserEmail)
             comments.push({
                 comment,
-                auther:respData[0].fullName
+                auther:Cookies.UserName
 
             })
             AverageRating[`star${rateValue}`]++
@@ -54,7 +52,7 @@ const NewComment = ({title,comments,setNewComments,AverageRating,setAverageRatin
                 AverageRating:AverageRating
             })
             setNewComments([...comments])
-        })
+
         setComment("")
 
     }
